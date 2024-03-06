@@ -1,0 +1,33 @@
+{
+    "name" : "net-tools/mailing-gapi",
+	
+    "description" : "Composer library to handle email sending through net-tools/mailing lib and Gmail",
+	
+	"type": "library",
+	
+	"require" : {
+		"php": ">= 7.2.0",
+		"net-tools/mailing" : "^1.7.0",
+		"google/apiclient" : "^2.15.0"
+    },
+	
+    "require-dev" : {
+	},
+	
+	"autoload": {
+		"psr-4": {
+			"Nettools\\Mailing\\": "src/"
+		}
+    },
+	 
+    "license" : "MIT",
+
+    "authors": [
+        {
+            "name": "Pierre",
+            "email": "dev@nettools.ovh",
+            "role": "Developer"
+        }
+    ]
+
+}

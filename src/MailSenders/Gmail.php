@@ -18,6 +18,9 @@ use \Nettools\Mailing\Mailer;
 
 /**
  * Strategy to send emails with Gmail API
+ *
+ * The `$params` constructor array parameter may define the following values :
+ *   - label (string) : to assign a label to sent email
  */
 class Gmail extends MailSender
 {
@@ -80,8 +83,19 @@ class Gmail extends MailSender
 		
 		$mbody = new \Google\Service\Gmail\Message(['raw' => base64_encode($m)]);
 
-		if ( $this->service->users_messages->send('me', $mbody)->id )
+		if ( $id = $this->service->users_messages->send('me', $mbody)->id )
+		{
+			// if 'label' parameter
+			if ( $label = $this->params['label'] )
+			{
+				$req = new \Google\Service\Gmail\ModifyMessageRequest();
+				$req->setAddLabelIds([$label]);
+				$this->service->users_messages->modify('me', $id, $req);
+			}
+			
+			
 			return TRUE;
+		}
 		else
 			throw new \Nettools\Mailing\Exception('Message not sent');
 	}

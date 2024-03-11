@@ -86,12 +86,13 @@ class Gmail extends MailSender
 		if ( $id = $this->service->users_messages->send('me', $mbody)->id )
 		{
 			// if 'label' parameter
-			if ( $label = $this->params['label'] )
-			{
-				$req = new \Google\Service\Gmail\ModifyMessageRequest();
-				$req->setAddLabelIds([$label]);
-				$this->service->users_messages->modify('me', $id, $req);
-			}
+			if ( array_key_exists('label', $this->params) )
+				if ( $label = $this->params['label'] )
+				{
+					$req = new \Google\Service\Gmail\ModifyMessageRequest();
+					$req->setAddLabelIds([$label]);
+					$this->service->users_messages->modify('me', $id, $req);
+				}
 			
 			
 			return TRUE;

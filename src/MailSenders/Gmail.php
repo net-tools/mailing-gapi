@@ -68,6 +68,16 @@ class Gmail extends MailSender
 	
 	
 	/**
+	 * Override default SMTP behavior, where a message is sent for each bcc recipient ; gmail (as php `mail` function) handle to/cc/bcc headers
+	 */
+	function handleBcc($to, $subject, $mail, &$headers)
+	{
+		// do nothing
+	}
+	
+	
+	
+	/**
 	 * implement sending
 	 *
      * @param string $to Recipient

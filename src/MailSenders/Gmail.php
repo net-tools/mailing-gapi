@@ -13,6 +13,9 @@ namespace Nettools\Mailing\MailSenders;
 
 
 use \Nettools\Mailing\Mailer;
+use \Nettools\Mailing\MailPieces\Headers;
+
+
 
 
 
@@ -70,7 +73,7 @@ class Gmail extends MailSender
 	/**
 	 * Override default SMTP behavior, where a message is sent for each bcc recipient ; gmail (as php `mail` function) handle to/cc/bcc headers
 	 */
-	function handleBcc($to, $subject, $mail, array &$headers)
+	function handleBcc($to, $subject, $mail, Headers $headers)
 	{
 		// do nothing
 	}

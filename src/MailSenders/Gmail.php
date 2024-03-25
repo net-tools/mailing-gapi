@@ -72,8 +72,12 @@ class Gmail extends MailSender
 	
 	/**
 	 * Override default SMTP behavior, where a message is sent for each bcc recipient ; gmail (as php `mail` function) handle to/cc/bcc headers
+	 *
+     * @param string $subject Subject
+     * @param string $mail String containing the email data
+     * @param \Nettools\Mailing\MailPieces\Headers $headers Email headers
 	 */
-	function handleBcc($to, $subject, $mail, Headers $headers)
+	function handleBcc($subject, $mail, Headers $headers)
 	{
 		// do nothing
 	}
@@ -81,7 +85,22 @@ class Gmail extends MailSender
 	
 	
 	/**
-	 * implement sending
+     * Handle Cc 
+     *
+     * For PHPMail strategy, we don't have to do anything, as gmail handle cc header
+     *
+     * @param string $subject Subject
+     * @param string $mail String containing the email data
+     * @param \Nettools\Mailing\MailPieces\Headers $headers Email headers
+     */
+	function handleCc($subject, $mail, Headers $headers)
+	{
+	}
+	
+	
+	
+	/**
+	 * Sending email
 	 *
      * @param string $to Recipient
      * @param string $subject Subject ; must be encoded if necessary

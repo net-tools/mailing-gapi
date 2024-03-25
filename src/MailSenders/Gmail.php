@@ -13,7 +13,7 @@ namespace Nettools\Mailing\MailSenders;
 
 
 use \Nettools\Mailing\Mailer;
-use \Nettools\Mailing\MailPieces\Headers;
+use \Nettools\Mailing\MailerEngine\Headers;
 
 
 
@@ -47,7 +47,7 @@ class Gmail extends MailSender
 	
 
 	/**
-	 * is the mailsender object ready ?
+	 * Is the mailsender object ready ?
 	 *
 	 * @return bool
 	 */
@@ -60,9 +60,9 @@ class Gmail extends MailSender
 	
 	
 	/**
-	 * destruct object, and disconnet 
+	 * Destroy object, and disconnet 
 	 */
-	function destruct()
+	function destroy()
 	{
 		if ( $this->params['persist'] && $this->ready() )
 			$this->service = null;
@@ -75,7 +75,7 @@ class Gmail extends MailSender
 	 *
      * @param string $subject Subject
      * @param string $mail String containing the email data
-     * @param \Nettools\Mailing\MailPieces\Headers $headers Email headers
+     * @param \Nettools\Mailing\MailerEngine\Headers $headers Email headers
 	 */
 	function handleBcc($subject, $mail, Headers $headers)
 	{
@@ -91,7 +91,7 @@ class Gmail extends MailSender
      *
      * @param string $subject Subject
      * @param string $mail String containing the email data
-     * @param \Nettools\Mailing\MailPieces\Headers $headers Email headers
+     * @param \Nettools\Mailing\MailerEngine\Headers $headers Email headers
      */
 	function handleCc($subject, $mail, Headers $headers)
 	{

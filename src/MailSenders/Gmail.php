@@ -71,33 +71,17 @@ class Gmail extends MailSender
 	
 	
 	/**
-	 * Override default SMTP behavior, where a message is sent for each bcc recipient ; gmail (as php `mail` function) handle to/cc/bcc headers
+	 * Is the strategy dealing with Cc and Bcc recipients ; this is the case for PHPMail or Gmail.
+	 * Other strategies ignore Cc and Bcc headers and emails must be sent for each recipients (To, Bcc, Cc)
 	 *
-     * @param string $subject Subject
-     * @param string $mail String containing the email data
-     * @param \Nettools\Mailing\MailerEngine\Headers $headers Email headers
+	 * @return bool Returns True if sending strategy handles Cc and Bcc recipients, false otherwise (by default)
 	 */
-	function handleBcc($subject, $mail, Headers $headers)
+	function isStrategyHandling_CcBcc()
 	{
-		// do nothing
+		return true;
 	}
-	
-	
-	
-	/**
-     * Handle Cc 
-     *
-     * For PHPMail strategy, we don't have to do anything, as gmail handle cc header
-     *
-     * @param string $subject Subject
-     * @param string $mail String containing the email data
-     * @param \Nettools\Mailing\MailerEngine\Headers $headers Email headers
-     */
-	function handleCc($subject, $mail, Headers $headers)
-	{
-	}
-	
-	
+	 	
+
 	
 	/**
 	 * Sending email
